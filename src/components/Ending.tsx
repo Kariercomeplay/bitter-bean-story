@@ -1,7 +1,6 @@
 import cupImgPng from "@/assets/coffee-cup-dark.png";
 import cupImgJpg from "@/assets/coffee-cup-dark.jpg";
-import { DISCLAIMER } from "@/data/content";
-// import { TEAM, REFERENCES } from "@/data/content"; // Tạm thời ẩn theo yêu cầu
+// import { TEAM, REFERENCES, DISCLAIMER } from "@/data/content"; // Tạm thời ẩn theo yêu cầu
 
 export function Ending() {
   return (
@@ -47,7 +46,7 @@ export function Ending() {
 
       {/* 
         ========================================================================
-        TẠM THỜI ẨN PHẦN GIỚI THIỆU NHÓM & TÀI LIỆU THAM KHẢO THEO YÊU CẦU
+        TẠM THỜI ẨN PHẦN GIỚI THIỆU NHÓM, TÀI LIỆU THAM KHẢO & DISCLAIMER THEO YÊU CẦU
         ========================================================================
         <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
           <div className="grid gap-14 md:grid-cols-2">
@@ -80,21 +79,19 @@ export function Ending() {
               </ul>
             </div>
           </div>
+
+          <div className="mt-16 rounded-xl border border-ivory/10 bg-roast/20 p-6 text-xs leading-relaxed text-ivory/60 font-sans backdrop-blur">
+            <p className="font-sans leading-relaxed">
+              {DISCLAIMER}
+            </p>
+          </div>
         </div>
         ========================================================================
       */}
 
       {/* Quiet Lingering Footer */}
-      <div className="mx-auto max-w-4xl px-6 pb-16 pt-6 md:px-10">
-        {/* Subtle Disclaimer Note */}
-        <div className="rounded-xl border border-ivory/10 bg-roast/20 p-6 text-xs leading-relaxed text-ivory/60 font-sans backdrop-blur">
-          <p className="font-sans leading-relaxed">
-            {DISCLAIMER}
-          </p>
-        </div>
-
-        {/* Quiet Lingering Closing Note */}
-        <div className="mt-12 flex flex-col items-center justify-center gap-2 text-center border-t border-ivory/10 pt-8">
+      <div className="mx-auto max-w-4xl px-6 pb-16 pt-4 md:px-10">
+        <div className="flex flex-col items-center justify-center gap-2 text-center border-t border-ivory/10 pt-8">
           <p className="font-display italic text-lg text-sun/90">
             Cảm ơn bạn đã đồng hành cùng hành trình phía sau ly cà phê.
           </p>
