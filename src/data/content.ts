@@ -175,12 +175,22 @@ export const QUIZ = [
   },
 ];
 
-export const TEAM = [
-  { name: "Nguyễn Văn A", role: "Nghiên cứu nội dung MLN122" },
-  { name: "Trần Văn B", role: "Kịch bản và biên tập nội dung" },
-  { name: "Lê Văn C", role: "Thiết kế UI/UX" },
-  { name: "Phạm Văn D", role: "Phát triển website" },
-  { name: "Hoàng Văn E", role: "Kiểm thử và thuyết trình" },
+export interface TeamMember {
+  name: string;
+  code?: string;
+  isLeader?: boolean;
+}
+
+export const TEAM: TeamMember[] = [
+  { name: "Khúc Ngọc Tuấn", code: "HE163753", isLeader: false },
+  { name: "Nguyễn Khánh Toàn", code: "HE180269", isLeader: false },
+  { name: "Vũ Trường Giang", code: "HE170669", isLeader: false },
+  { name: "Lương Trọng Nghĩa", code: "HE181385", isLeader: true },
+  { name: "Lương Trung Kiên", code: "HE150577", isLeader: false },
+  { name: "Võ Trọng Hải", code: "HE181414", isLeader: false },
+  { name: "Dương Ngọc Tú", code: "", isLeader: false },
+  { name: "Phan Khắc Hoàn", code: "HE151144", isLeader: false },
+  { name: "Ngô Chí Cường", code: "HE160282", isLeader: false },
 ];
 
 export const REFERENCES = [

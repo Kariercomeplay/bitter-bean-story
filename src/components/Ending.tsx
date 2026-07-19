@@ -1,6 +1,6 @@
 import cupImgPng from "@/assets/coffee-cup-dark.png";
 import cupImgJpg from "@/assets/coffee-cup-dark.jpg";
-// import { TEAM, REFERENCES, DISCLAIMER } from "@/data/content"; // Tạm thời ẩn theo yêu cầu
+import { TEAM, REFERENCES, DISCLAIMER } from "@/data/content";
 
 export function Ending() {
   return (
@@ -44,27 +44,64 @@ export function Ending() {
         </div>
       </div>
 
-      {/* 
-        ========================================================================
-        TẠM THỜI ẨN PHẦN GIỚI THIỆU NHÓM, TÀI LIỆU THAM KHẢO & DISCLAIMER THEO YÊU CẦU
-        ========================================================================
-        <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
-          <div className="grid gap-14 md:grid-cols-2">
-            <div>
-              <p className="eyebrow text-sun tracking-[0.25em]">GIỚI THIỆU NHÓM THỰC HIỆN</p>
-              <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
-                Nhóm sinh viên MLN122
-              </h3>
-              <div className="mt-6 divide-y divide-ivory/10 border-t border-b border-ivory/10">
-                {TEAM.map((member) => (
-                  <div key={member.name} className="flex items-center justify-between py-3.5">
-                    <span className="font-display text-lg text-ivory">{member.name}</span>
-                    <span className="text-xs uppercase tracking-wider text-sun font-mono">{member.role}</span>
+      {/* Team Members & References Footer Section */}
+      <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
+        <div className="grid gap-14 lg:grid-cols-2">
+          {/* Team Members */}
+          <div>
+            <p className="eyebrow text-sun tracking-[0.25em]">GIỚI THIỆU NHÓM THỰC HIỆN</p>
+            <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
+              Nhóm sinh viên MLN122
+            </h3>
+            
+            <div className="mt-6 space-y-2.5">
+              {TEAM.map((member) => (
+                <div
+                  key={member.name}
+                  className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-300 ${
+                    member.isLeader
+                      ? "bg-sun/15 border border-sun/50 shadow-md shadow-sun/5 ring-1 ring-sun/30"
+                      : "bg-ivory/5 border border-ivory/10 hover:border-ivory/20"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`font-display text-base md:text-lg ${
+                        member.isLeader
+                          ? "text-sun font-bold tracking-wide"
+                          : "text-ivory font-medium"
+                      }`}
+                    >
+                      {member.name}
+                    </span>
+                    {member.isLeader && (
+                      <span className="inline-flex items-center gap-1 rounded bg-sun/20 px-2 py-0.5 text-[10px] font-semibold text-sun uppercase tracking-wider border border-sun/40 font-mono">
+                        <span className="h-1.5 w-1.5 rounded-full bg-sun animate-pulse" />
+                        LEADER
+                      </span>
+                    )}
                   </div>
-                ))}
-              </div>
-            </div>
 
+                  {member.code ? (
+                    <span
+                      className={`text-xs font-mono tracking-wider ${
+                        member.isLeader ? "text-sun font-semibold" : "text-ivory/60"
+                      }`}
+                    >
+                      {member.code}
+                    </span>
+                  ) : (
+                    <span className="text-xs font-mono tracking-wider text-ivory/30 italic">
+                      —
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* References */}
+          <div className="flex flex-col justify-between">
             <div>
               <p className="eyebrow text-sun tracking-[0.25em]">TÀI LIỆU THAM KHẢO</p>
               <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
@@ -72,22 +109,22 @@ export function Ending() {
               </h3>
               <ul className="mt-6 space-y-3 text-xs leading-relaxed text-ivory/80">
                 {REFERENCES.map((ref, idx) => (
-                  <li key={idx} className="border-l-2 border-sun/50 pl-4 py-1">
+                  <li key={idx} className="border-l-2 border-sun/50 pl-4 py-1.5 bg-ivory/[0.02] rounded-r">
                     {ref}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-
-          <div className="mt-16 rounded-xl border border-ivory/10 bg-roast/20 p-6 text-xs leading-relaxed text-ivory/60 font-sans backdrop-blur">
-            <p className="font-sans leading-relaxed">
-              {DISCLAIMER}
-            </p>
-          </div>
         </div>
-        ========================================================================
-      */}
+
+        {/* Disclaimer */}
+        <div className="mt-14 rounded-xl border border-ivory/10 bg-roast/20 p-6 text-xs leading-relaxed text-ivory/60 font-sans backdrop-blur">
+          <p className="font-sans leading-relaxed">
+            {DISCLAIMER}
+          </p>
+        </div>
+      </div>
 
       {/* Quiet Lingering Footer */}
       <div className="mx-auto max-w-4xl px-6 pb-16 pt-4 md:px-10">
