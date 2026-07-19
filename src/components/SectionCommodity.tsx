@@ -7,29 +7,26 @@ export function SectionCommodity() {
 
   return (
     <section id="hanghoa" className="relative bg-paper py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
+      {/* Top transition gradient from Hero dark to Paper light */}
+      <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-ink to-paper pointer-events-none" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 pt-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Image 45% width on desktop */}
+          {/* Image side */}
           <div className="lg:col-span-5">
-            <div className="group relative overflow-hidden rounded-md shadow-2xl shadow-ink/15 border border-ink/10">
+            <div className="group relative overflow-hidden rounded-lg shadow-xl shadow-ink/10">
               <img
                 src={handsImgPng || handsImgJpg}
-                alt="Một bàn tay đang hái quả cà phê chín đỏ trên nền lá xanh tự nhiên"
+                alt="Một bàn tay đang hái quả cà phê chín đỏ"
                 width={1400}
                 height={1600}
                 loading="lazy"
-                className="h-[440px] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-[600px]"
+                className="h-[440px] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-[560px]"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent p-6">
-                <p className="eyebrow text-sun">Hình ảnh tư liệu</p>
-                <p className="mt-1 font-display text-sm italic text-ivory/90">
-                  Bàn tay thu hái quả cà phê chín mộng tại nông trại
-                </p>
-              </div>
             </div>
           </div>
 
-          {/* Content side */}
+          {/* Narrative content side */}
           <div className="lg:col-span-7">
             <p className="eyebrow text-roast tracking-[0.25em]">CHƯƠNG 01 · HÀNG HÓA</p>
             <h2 className="mt-4 font-display text-3xl leading-tight text-ink md:text-5xl">
@@ -38,100 +35,100 @@ export function SectionCommodity() {
             </h2>
 
             <p className="mt-6 text-base leading-relaxed text-ink/80 md:text-lg">
-              Hạt cà phê có công dụng đối với con người. Nhưng chỉ khi nó được sản xuất để trao đổi hoặc mua bán trên thị trường, nó mới trở thành hàng hóa.
+              Hạt cà phê mang trong mình công dụng hữu ích đối với con người. Nhưng chỉ khi nó được tạo ra để trao đổi trên thị trường, nó mới khoác lên mình hình thái hàng hóa.
             </p>
 
-            {/* Interactive choices */}
-            <div className="mt-8 rounded-lg border border-ink/15 bg-ivory p-6 shadow-sm">
-              <p className="text-xs uppercase tracking-widest font-semibold text-roast mb-4">
-                Tình huống thực tế — Chọn một trường hợp:
+            {/* Natural Interactive Choice */}
+            <div className="mt-8 rounded-xl bg-ivory p-6 md:p-8 shadow-sm border border-ink/5">
+              <p className="text-sm font-display italic text-roast mb-4">
+                Nếu bạn là người trồng hạt cà phê này...
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 <button
                   onClick={() => setChoice("A")}
-                  className={`rounded-md border p-4 text-left transition-all ${
+                  className={`rounded-lg border p-4 text-left transition-all ${
                     choice === "A"
-                      ? "border-earth bg-earth/10 text-earth font-medium shadow-inner"
-                      : "border-ink/20 text-ink/80 hover:border-earth/50 hover:bg-paper"
+                      ? "border-earth bg-earth/10 text-earth font-medium"
+                      : "border-ink/15 text-ink/80 hover:border-earth/40 hover:bg-paper"
                   }`}
                 >
-                  <span className="block text-xs uppercase tracking-wider text-earth font-semibold mb-1">
-                    Trường hợp A
+                  <span className="block font-display text-base font-semibold mb-1">
+                    Trồng cho gia đình sử dụng
                   </span>
-                  Trồng để gia đình sử dụng
+                  <span className="text-xs text-ink/60 font-sans block">
+                    Phục vụ nhu cầu thưởng thức cá nhân.
+                  </span>
                 </button>
 
                 <button
                   onClick={() => setChoice("B")}
-                  className={`rounded-md border p-4 text-left transition-all ${
+                  className={`rounded-lg border p-4 text-left transition-all ${
                     choice === "B"
-                      ? "border-earth bg-earth/10 text-earth font-medium shadow-inner"
-                      : "border-ink/20 text-ink/80 hover:border-earth/50 hover:bg-paper"
+                      ? "border-earth bg-earth/10 text-earth font-medium"
+                      : "border-ink/15 text-ink/80 hover:border-earth/40 hover:bg-paper"
                   }`}
                 >
-                  <span className="block text-xs uppercase tracking-wider text-earth font-semibold mb-1">
-                    Trường hợp B
+                  <span className="block font-display text-base font-semibold mb-1">
+                    Trồng để bán trên thị trường
                   </span>
-                  Trồng để bán trên thị trường
+                  <span className="text-xs text-ink/60 font-sans block">
+                    Mang sản phẩm ra trao đổi với xã hội.
+                  </span>
                 </button>
               </div>
 
               {/* Dynamic feedback */}
               {choice && (
-                <div className="mt-5 rounded-md border-l-4 border-earth bg-paper p-4 text-sm leading-relaxed text-ink/90 animate-fade-in">
+                <div className="mt-5 rounded-lg bg-paper p-4 text-sm leading-relaxed text-ink/85 animate-fade-in border-l-2 border-earth">
                   {choice === "A" ? (
                     <p>
-                      <strong className="text-earth">Kết quả:</strong> Đây là một sản phẩm phục vụ nhu cầu trực tiếp, chưa phải hàng hóa.
+                      Sản phẩm sinh ra chỉ để đáp ứng nhu cầu tiêu dùng trực tiếp của gia đình. Lúc này, hạt cà phê là sản phẩm lao động, chưa bước vào quan hệ hàng hóa.
                     </p>
                   ) : (
                     <p>
-                      <strong className="text-earth">Kết quả:</strong> Sản phẩm được tạo ra nhằm mục đích trao đổi, vì vậy nó mang hình thái hàng hóa.
+                      Khi hạt cà phê được tạo ra nhằm mục đích mang đi trao đổi, thỏa mãn nhu cầu của người khác trên thị trường, nó chính thức trở thành hàng hóa.
                     </p>
                   )}
                 </div>
               )}
             </div>
 
-            {/* 3 Knowledge cards */}
-            <div className="mt-10 border-t border-ink/10 pt-8">
-              <p className="eyebrow text-roast mb-4">Hai thuộc tính và hình thức biểu hiện</p>
+            {/* 3 Core attributes */}
+            <div className="mt-10 pt-6">
               <div className="grid gap-4 sm:grid-cols-3">
-                <div className="rounded-md border border-ink/10 bg-ivory p-5 transition-shadow hover:shadow-md">
-                  <span className="text-xs uppercase tracking-wider text-roast font-semibold block">01</span>
-                  <p className="font-display text-lg italic text-earth mt-1">Giá trị sử dụng</p>
-                  <p className="mt-2 text-xs leading-relaxed text-ink/75">
-                    Công dụng của sản phẩm có khả năng đáp ứng một nhu cầu nhất định của con người.
+                <div className="rounded-lg bg-ivory p-5 border border-ink/5">
+                  <p className="font-display text-lg italic text-earth">Giá trị sử dụng</p>
+                  <p className="mt-2 text-xs leading-relaxed text-ink/75 font-sans">
+                    Công dụng làm dịu cơn khát, mang lại sự tỉnh táo và hương vị đặc trưng cho người thưởng thức.
                   </p>
                 </div>
 
-                <div className="rounded-md border border-ink/10 bg-ivory p-5 transition-shadow hover:shadow-md">
-                  <span className="text-xs uppercase tracking-wider text-roast font-semibold block">02</span>
-                  <p className="font-display text-lg italic text-earth mt-1">Giá trị</p>
-                  <p className="mt-2 text-xs leading-relaxed text-ink/75">
-                    Lao động xã hội của người sản xuất hàng hóa được kết tinh trong hàng hóa.
+                <div className="rounded-lg bg-ivory p-5 border border-ink/5">
+                  <p className="font-display text-lg italic text-earth">Giá trị</p>
+                  <p className="mt-2 text-xs leading-relaxed text-ink/75 font-sans">
+                    Lao động xã hội của người trồng trọt và chế biến ẩn mình bên trong từng hạt cà phê.
                   </p>
                 </div>
 
-                <div className="rounded-md border border-ink/10 bg-ivory p-5 transition-shadow hover:shadow-md">
-                  <span className="text-xs uppercase tracking-wider text-roast font-semibold block">03</span>
-                  <p className="font-display text-lg italic text-earth mt-1">Giá trị trao đổi</p>
-                  <p className="mt-2 text-xs leading-relaxed text-ink/75">
-                    Hình thức biểu hiện của giá trị thông qua quan hệ trao đổi giữa các hàng hóa.
+                <div className="rounded-lg bg-ivory p-5 border border-ink/5">
+                  <p className="font-display text-lg italic text-earth">Giá trị trao đổi</p>
+                  <p className="mt-2 text-xs leading-relaxed text-ink/75 font-sans">
+                    Tỷ lệ trao đổi giữa ly cà phê với các hàng hóa khác trên thị trường.
                   </p>
                 </div>
               </div>
 
-              {/* Clarification note */}
-              <div className="mt-6 rounded-md bg-ink/5 p-4 border border-ink/10 text-xs leading-relaxed text-ink/80">
-                <p>
-                  <strong className="text-earth uppercase tracking-wider">Lưu ý học thuật:</strong>{" "}
-                  Giá trị sử dụng và giá trị là hai thuộc tính của hàng hóa. Giá trị trao đổi là hình thức biểu hiện của giá trị, không nên đồng nhất ba khái niệm này.
-                </p>
-              </div>
+              {/* Seamless reflection note */}
+              <p className="mt-6 text-xs leading-relaxed text-ink/60 italic font-display">
+                * Giá trị sử dụng và giá trị là hai thuộc tính song hành của hàng hóa; giá trị trao đổi là hình thức biểu hiện ra bên ngoài của giá trị.
+              </p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Bottom gradient fade into Section 2 */}
+      <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-b from-transparent to-paper pointer-events-none" />
     </section>
   );
 }

@@ -1,90 +1,106 @@
 import cupImgPng from "@/assets/coffee-cup-dark.png";
 import cupImgJpg from "@/assets/coffee-cup-dark.jpg";
-import { TEAM, REFERENCES, DISCLAIMER } from "@/data/content";
+import { DISCLAIMER } from "@/data/content";
+// import { TEAM, REFERENCES } from "@/data/content"; // Tạm thời ẩn theo yêu cầu
 
 export function Ending() {
   return (
     <section className="relative bg-ink text-ivory">
       {/* Visual ending quote backdrop */}
-      <div className="relative h-[560px] w-full overflow-hidden md:h-[680px]">
+      <div className="relative h-[600px] w-full overflow-hidden md:h-[720px]">
         <img
           src={cupImgPng || cupImgJpg}
-          alt="Một ly cà phê đã uống gần hết trong ánh sáng nhẹ từ cửa sổ"
+          alt="Một ly cà phê trong ánh sáng nhẹ từ cửa sổ"
           width={1600}
           height={1200}
           loading="lazy"
-          className="h-full w-full object-cover opacity-60"
+          className="h-full w-full object-cover opacity-50 filter brightness-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/65 to-ink/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/40" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          {/* Main lingering quote */}
           <blockquote className="max-w-4xl">
-            <p className="font-display text-2xl leading-relaxed text-ivory md:text-4xl lg:text-5xl">
+            <p className="font-display text-2xl leading-relaxed text-ivory md:text-4xl lg:text-5xl tracking-tight">
               “Giá của một ly cà phê được nhìn thấy trên{" "}
-              <span className="italic text-sun font-normal">hóa đơn</span>. Giá trị phía sau nó được tạo nên qua cả một quá trình{" "}
+              <span className="italic text-sun font-normal">hóa đơn</span>.
+              <br className="hidden md:inline" />
+              Giá trị phía sau nó được tạo nên qua cả một quá trình{" "}
               <span className="italic text-sun font-normal">lao động xã hội</span>.”
             </p>
           </blockquote>
 
-          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-ivory/80 md:text-base font-sans">
-            Khi hiểu được hành trình đó, một sản phẩm quen thuộc không còn chỉ là thứ chúng ta sử dụng mỗi ngày. Nó trở thành cánh cửa để nhìn thấy lao động, thị trường và các quan hệ kinh tế đang tồn tại xung quanh mình.
+          {/* Deep reflective paragraph */}
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-ivory/85 md:text-base font-sans font-light">
+            Vị đắng qua vòm họng chỉ kéo dài vài giây. Nhưng những giọt mồ hôi, thời gian và mối quan hệ kinh tế nâng đỡ nó sẽ còn đọng lại rất lâu. Khi học cách nhìn thấu hành trình của một vật phẩm thường nhật, ta bắt đầu thấu hiểu thế giới xung quanh bằng sự trân trọng sâu sắc hơn.
           </p>
+
+          {/* Emotional separator */}
+          <div className="mt-12 flex flex-col items-center gap-2">
+            <span className="h-10 w-px bg-gradient-to-b from-sun/60 to-transparent" />
+            <span className="text-xs font-display italic tracking-widest text-sun/80">
+              Sau Vị Đắng
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Team Intro & References section */}
-      <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-28">
-        <div className="grid gap-14 md:grid-cols-2">
-          {/* Group Intro */}
-          <div>
-            <p className="eyebrow text-sun tracking-[0.25em]">GIỚI THIỆU NHÓM THỰC HIỆN</p>
-            <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
-              Nhóm sinh viên MLN122
-            </h3>
-            <div className="mt-6 divide-y divide-ivory/10 border-t border-b border-ivory/10">
-              {TEAM.map((member) => (
-                <div key={member.name} className="flex items-center justify-between py-3.5">
-                  <span className="font-display text-lg text-ivory">{member.name}</span>
-                  <span className="text-xs uppercase tracking-wider text-sun font-mono">{member.role}</span>
-                </div>
-              ))}
+      {/* 
+        ========================================================================
+        TẠM THỜI ẨN PHẦN GIỚI THIỆU NHÓM & TÀI LIỆU THAM KHẢO THEO YÊU CẦU
+        ========================================================================
+        <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
+          <div className="grid gap-14 md:grid-cols-2">
+            <div>
+              <p className="eyebrow text-sun tracking-[0.25em]">GIỚI THIỆU NHÓM THỰC HIỆN</p>
+              <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
+                Nhóm sinh viên MLN122
+              </h3>
+              <div className="mt-6 divide-y divide-ivory/10 border-t border-b border-ivory/10">
+                {TEAM.map((member) => (
+                  <div key={member.name} className="flex items-center justify-between py-3.5">
+                    <span className="font-display text-lg text-ivory">{member.name}</span>
+                    <span className="text-xs uppercase tracking-wider text-sun font-mono">{member.role}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* References */}
-          <div>
-            <p className="eyebrow text-sun tracking-[0.25em]">TÀI LIỆU THAM KHẢO</p>
-            <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
-              Nguồn tri thức & Tư liệu
-            </h3>
-            <ul className="mt-6 space-y-3 text-xs leading-relaxed text-ivory/80">
-              {REFERENCES.map((ref, idx) => (
-                <li key={idx} className="border-l-2 border-sun/50 pl-4 py-1">
-                  {ref}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 border-t border-ivory/10 pt-4">
-              <span className="eyebrow text-ivory/60 block mb-1">Quy tắc bản quyền & Hình ảnh</span>
-              <p className="text-xs text-ivory/60 leading-relaxed">
-                Tất cả các hình ảnh sử dụng trên website đều có bản quyền mở hoặc được khởi tạo độc quyền cho mục đích minh họa học tập không thương mại.
-              </p>
+            <div>
+              <p className="eyebrow text-sun tracking-[0.25em]">TÀI LIỆU THAM KHẢO</p>
+              <h3 className="mt-3 font-display text-3xl text-ivory font-semibold">
+                Nguồn tri thức & Tư liệu
+              </h3>
+              <ul className="mt-6 space-y-3 text-xs leading-relaxed text-ivory/80">
+                {REFERENCES.map((ref, idx) => (
+                  <li key={idx} className="border-l-2 border-sun/50 pl-4 py-1">
+                    {ref}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
+        ========================================================================
+      */}
 
-        {/* Mandatory Disclaimer Box */}
-        <div className="mt-16 rounded-lg border border-sun/25 bg-roast/30 p-6 text-xs leading-relaxed text-ivory/80 md:p-8 shadow-inner">
-          <p className="eyebrow text-sun font-bold tracking-widest mb-2">DISCLAIMER / TUYÊN BỐ MIỄN TRỪ</p>
+      {/* Quiet Lingering Footer */}
+      <div className="mx-auto max-w-4xl px-6 pb-16 pt-6 md:px-10">
+        {/* Subtle Disclaimer Note */}
+        <div className="rounded-xl border border-ivory/10 bg-roast/20 p-6 text-xs leading-relaxed text-ivory/60 font-sans backdrop-blur">
           <p className="font-sans leading-relaxed">
             {DISCLAIMER}
           </p>
         </div>
 
-        {/* Footer info */}
-        <div className="mt-16 text-center text-xs uppercase tracking-[0.3em] text-ivory/40 border-t border-ivory/10 pt-8">
-          SAU VỊ ĐẮNG · MLN122 — Sản phẩm kể chuyện tương tác Kinh tế Chính trị Mác–Lênin
+        {/* Quiet Lingering Closing Note */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-2 text-center border-t border-ivory/10 pt-8">
+          <p className="font-display italic text-lg text-sun/90">
+            Cảm ơn bạn đã đồng hành cùng hành trình phía sau ly cà phê.
+          </p>
+          <p className="text-[11px] tracking-widest text-ivory/40 font-mono uppercase">
+            MLN122 · Sản phẩm sáng tạo
+          </p>
         </div>
       </div>
     </section>

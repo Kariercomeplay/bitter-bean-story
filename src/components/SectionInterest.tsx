@@ -6,7 +6,7 @@ export function SectionInterest() {
   const activeChoice = INTEREST_CHOICES.find((c) => c.key === selectedKey);
 
   return (
-    <section id="loiich" className="relative bg-ivory py-24 md:py-32 border-t border-ink/10">
+    <section id="loiich" className="relative bg-paper py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div className="max-w-3xl">
           <p className="eyebrow text-roast tracking-[0.25em]">CHƯƠNG 06 · QUAN HỆ LỢI ÍCH</p>
@@ -17,15 +17,14 @@ export function SectionInterest() {
           </h2>
         </div>
 
-        {/* Scenario introduction box */}
-        <div className="mt-10 rounded-lg border border-ink/15 bg-paper p-6 shadow-sm">
-          <span className="eyebrow text-earth font-bold block mb-1">Tình huống quyết định</span>
+        {/* Scenario description */}
+        <div className="mt-10 rounded-xl bg-ivory p-6 md:p-8 shadow-sm border border-ink/5">
           <p className="text-base leading-relaxed text-ink/85 font-sans">
-            Một doanh nghiệp chế biến cà phê dự định đưa hệ thống phân loại tự động vào sản xuất. Máy móc mới có thể tăng năng suất nhưng một số công việc thủ công sẽ không còn cần thiết.
+            Một doanh nghiệp chế biến cà phê dự định đưa hệ thống phân loại tự động vào dây chuyền sản xuất. Máy móc mới giúp tăng mạnh năng suất nhưng một số công việc thủ công sẽ không còn cần thiết.
           </p>
         </div>
 
-        {/* 3 Choices */}
+        {/* 3 Options */}
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {INTEREST_CHOICES.map((c) => {
             const isSelected = c.key === selectedKey;
@@ -33,10 +32,10 @@ export function SectionInterest() {
               <button
                 key={c.key}
                 onClick={() => setSelectedKey(c.key)}
-                className={`rounded-lg border p-6 text-left transition-all ${
+                className={`rounded-xl border p-6 text-left transition-all ${
                   isSelected
-                    ? "border-earth bg-earth/10 shadow-md ring-1 ring-earth"
-                    : "border-ink/15 bg-paper hover:border-earth/50"
+                    ? "border-earth bg-earth/10 shadow-sm"
+                    : "border-ink/10 bg-ivory hover:border-earth/40"
                 }`}
               >
                 <p className={`font-display text-lg ${isSelected ? "text-earth font-semibold" : "text-ink"}`}>
@@ -47,52 +46,45 @@ export function SectionInterest() {
           })}
         </div>
 
-        {/* 3 Perspective cards revealed */}
+        {/* 3 Perspective cards */}
         {activeChoice && (
           <div className="mt-10 grid gap-6 md:grid-cols-3 animate-fade-in">
             {/* Người lao động card */}
-            <div className="rounded-lg border border-ink/10 border-l-4 border-l-earth bg-paper p-6 shadow-sm">
-              <span className="eyebrow text-earth font-bold block">01 · Người lao động</span>
-              <p className="mt-3 text-sm leading-relaxed text-ink/85">
+            <div className="rounded-xl bg-ivory p-6 border-t-2 border-earth shadow-sm">
+              <span className="eyebrow text-earth font-bold block mb-2">Người lao động</span>
+              <p className="text-sm leading-relaxed text-ink/80 font-sans">
                 {activeChoice.perspectives.worker}
               </p>
-              <div className="mt-4 border-t border-ink/10 pt-3 text-[11px] text-ink/60 space-y-1">
-                <p>· Yếu tố tác động: Việc làm, Thu nhập, Yêu cầu kỹ năng, Cơ hội đào tạo.</p>
-              </div>
             </div>
 
             {/* Doanh nghiệp card */}
-            <div className="rounded-lg border border-ink/10 border-l-4 border-l-sun bg-paper p-6 shadow-sm">
-              <span className="eyebrow text-sun font-bold block">02 · Doanh nghiệp</span>
-              <p className="mt-3 text-sm leading-relaxed text-ink/85">
+            <div className="rounded-xl bg-ivory p-6 border-t-2 border-sun shadow-sm">
+              <span className="eyebrow text-sun font-bold block mb-2">Doanh nghiệp</span>
+              <p className="text-sm leading-relaxed text-ink/80 font-sans">
                 {activeChoice.perspectives.firm}
               </p>
-              <div className="mt-4 border-t border-ink/10 pt-3 text-[11px] text-ink/60 space-y-1">
-                <p>· Yếu tố tác động: Năng suất, Chi phí, Khả năng cạnh tranh, Hiệu quả dài hạn.</p>
-              </div>
             </div>
 
             {/* Nhà nước và xã hội card */}
-            <div className="rounded-lg border border-ink/10 border-l-4 border-l-leaf bg-paper p-6 shadow-sm">
-              <span className="eyebrow text-leaf font-bold block">03 · Nhà nước và xã hội</span>
-              <p className="mt-3 text-sm leading-relaxed text-ink/85">
+            <div className="rounded-xl bg-ivory p-6 border-t-2 border-leaf shadow-sm">
+              <span className="eyebrow text-leaf font-bold block mb-2">Nhà nước & Xã hội</span>
+              <p className="text-sm leading-relaxed text-ink/80 font-sans">
                 {activeChoice.perspectives.state}
               </p>
-              <div className="mt-4 border-t border-ink/10 pt-3 text-[11px] text-ink/60 space-y-1">
-                <p>· Yếu tố tác động: Chất lượng nguồn nhân lực, An sinh xã hội, Năng lực sản xuất, Chính sách hỗ trợ chuyển đổi nghề.</p>
-              </div>
             </div>
           </div>
         )}
 
-        {/* Academic Conclusion */}
-        <div className="mt-12 rounded-lg bg-ink text-ivory p-6 md:p-8 shadow-xl">
-          <span className="eyebrow text-sun block mb-2">Kết luận lý luận</span>
+        {/* Synthesis Reflection */}
+        <div className="mt-12 rounded-xl bg-ink text-ivory p-6 md:p-8 shadow-xl">
           <p className="font-display text-lg leading-relaxed text-ivory/90 font-medium">
-            Trong nền kinh tế tồn tại nhiều nhóm lợi ích khác nhau. Vai trò của chính sách không chỉ là lựa chọn một bên, mà còn là nhận diện, điều hòa và tạo điều kiện để các lợi ích chính đáng được thực hiện.
+            Trong nền kinh tế tồn tại nhiều nhóm lợi ích khác nhau. Vai trò của chính sách không chỉ là lựa chọn một bên, mà còn là nhận diện, điều hòa và tạo điều kiện để các lợi ích chính đáng được dung hòa và thực hiện.
           </p>
         </div>
       </div>
+
+      {/* Smooth gradient transition down into dark Section 07 (Hội nhập) */}
+      <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-b from-transparent to-ink pointer-events-none" />
     </section>
   );
 }
