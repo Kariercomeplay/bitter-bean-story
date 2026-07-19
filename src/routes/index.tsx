@@ -1,24 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { SectionCommodity } from "@/components/SectionCommodity";
+import { SectionLabor } from "@/components/SectionLabor";
+import { SectionSNLT } from "@/components/SectionSNLT";
+import { SectionLaborPower } from "@/components/SectionLaborPower";
+import { SectionValuePrice } from "@/components/SectionValuePrice";
+import { SectionInterest } from "@/components/SectionInterest";
+import { SectionIntegration } from "@/components/SectionIntegration";
+import { Quiz } from "@/components/Quiz";
+import { Ending } from "@/components/Ending";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="grain-bg text-ink">
+      <Header />
+      <Hero />
+      <SectionCommodity />
+      <SectionLabor />
+      <SectionSNLT />
+      <SectionLaborPower />
+      <SectionValuePrice />
+      <SectionInterest />
+      <SectionIntegration />
+      <Quiz />
+      <Ending />
+    </main>
   );
 }
