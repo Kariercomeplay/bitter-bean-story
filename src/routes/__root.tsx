@@ -77,12 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Sau Vị Đắng — Hành trình của một ly cà phê | MLN122" },
       { name: "twitter:description", content: "Một ly cà phê dưới góc nhìn Kinh tế Chính trị Mác–Lênin: hàng hóa, lao động, giá trị và quan hệ lợi ích trong hành trình từ nông trại đến ly cà phê." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/734d1c6b-a483-47a0-9b3b-4ef349ee3820/id-preview-8902c235--acf7c73c-771e-45c5-a7cb-e78b9eef3e38.lovable.app-1784467234176.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/734d1c6b-a483-47a0-9b3b-4ef349ee3820/id-preview-8902c235--acf7c73c-771e-45c5-a7cb-e78b9eef3e38.lovable.app-1784467234176.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "shortcut icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#2B1D17"/>
+  <!-- Steam rising -->
+  <path d="M24 18C23 15 25 13 24 10" stroke="#C49A58" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M32 16C31 13 33 11 32 8" stroke="#C49A58" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M40 18C39 15 41 13 40 10" stroke="#C49A58" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <!-- Cup body -->
+  <path d="M16 26C16 26 18 46 32 46C46 46 48 26 48 26H16Z" fill="#F4EFE6"/>
+  <!-- Cup handle -->
+  <path d="M48 30C52 30 54 32 54 35C54 38 52 40 48 40" stroke="#F4EFE6" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Saucer -->
+  <path d="M14 50H50" stroke="#C49A58" stroke-width="3" stroke-linecap="round"/>
+</svg>
