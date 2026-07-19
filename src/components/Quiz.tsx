@@ -3,125 +3,161 @@ import { QUIZ } from "@/data/content";
 
 export function Quiz() {
   const [idx, setIdx] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
-  const [picked, setPicked] = useState<number | null>(null);
-  const [done, setDone] = useState(false);
+  const [userAnswers, setUserAnswers] = useState<number[]>([]);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [isFinished, setIsFinished] = useState(false);
 
-  const q = QUIZ[idx];
-  const correctCount = answers.filter((a, i) => a === QUIZ[i].answer).length;
+  const currentQ = QUIZ[idx];
+  const score = userAnswers.filter((ans, i) => ans === QUIZ[i].answer).length;
 
-  const pick = (i: number) => {
-    if (picked !== null) return;
-    setPicked(i);
-    setAnswers((prev) => [...prev, i]);
+  const handlePick = (optionIdx: number) => {
+    if (selectedOption !== null) return;
+    setSelectedOption(optionIdx);
+    setUserAnswers((prev) => [...prev, optionIdx]);
   };
 
-  const next = () => {
+  const handleNext = () => {
     if (idx + 1 < QUIZ.length) {
-      setIdx(idx + 1);
-      setPicked(null);
+      setIdx((i) => i + 1);
+      setSelectedOption(null);
     } else {
-      setDone(true);
+      setIsFinished(true);
     }
   };
 
-  const restart = () => {
-    setIdx(0); setAnswers([]); setPicked(null); setDone(false);
+  const handleRestart = () => {
+    setIdx(0);
+    setUserAnswers([]);
+    setSelectedOption(null);
+    setIsFinished(false);
   };
 
-  const scrollTop = () => {
+  const handleScrollTop = () => {
     document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="quiz" className="relative bg-paper py-24 md:py-32">
+    <section id="quiz" className="relative bg-paper py-24 md:py-32 border-t border-ink/10">
       <div className="mx-auto max-w-3xl px-6 md:px-10">
         <div className="text-center">
-          <p className="eyebrow">Trắc nghiệm</p>
+          <p className="eyebrow text-roast tracking-[0.25em]">TRẮC NGHIỆM KIỂM TRA</p>
           <h2 className="mt-3 font-display text-3xl text-ink md:text-5xl">
-            Kiểm tra <span className="italic text-earth">hành trình</span> của bạn
+            Bạn đã nhìn thấy điều gì phía sau một ly cà phê?
           </h2>
         </div>
 
-        {!done ? (
-          <div className="mt-12 rounded-md border border-ink/10 bg-ivory p-6 md:p-10">
-            <div className="flex items-center justify-between text-xs text-ink/60">
-              <span>Câu {idx + 1} / {QUIZ.length}</span>
-              <span>{Math.round(((idx) / QUIZ.length) * 100)}%</span>
+        {!isFinished ? (
+          <div className="mt-12 rounded-lg border border-ink/15 bg-ivory p-6 md:p-10 shadow-lg">
+            {/* Header progress */}
+            <div className="flex items-center justify-between text-xs font-semibold text-roast uppercase tracking-wider mb-2">
+              <span>CÂU {idx + 1} / {QUIZ.length}</span>
+              <span>Tiến độ {Math.round(((idx + (selectedOption !== null ? 1 : 0)) / QUIZ.length) * 100)}%</span>
             </div>
-            <div className="mt-3 h-1 w-full rounded-full bg-ink/10">
+
+            {/* Progress bar */}
+            <div className="h-2 w-full rounded-full bg-ink/10 overflow-hidden mb-8">
               <div
-                className="h-full rounded-full bg-earth transition-all"
-                style={{ width: `${((idx + (picked !== null ? 1 : 0)) / QUIZ.length) * 100}%` }}
+                className="h-full bg-earth transition-all duration-300"
+                style={{ width: `${((idx + (selectedOption !== null ? 1 : 0)) / QUIZ.length) * 100}%` }}
               />
             </div>
 
-            <p className="mt-8 font-display text-2xl leading-snug text-ink md:text-3xl">
-              {q.q}
+            {/* Question Text */}
+            <p className="font-display text-2xl leading-snug text-ink font-semibold">
+              {currentQ.q}
             </p>
 
+            {/* Options list */}
             <div className="mt-6 grid gap-3">
-              {q.options.map((o, i) => {
-                const isPicked = picked === i;
-                const isCorrect = q.answer === i;
-                const revealed = picked !== null;
-                let cls = "border-ink/15 hover:border-ink/40";
+              {currentQ.options.map((optionText, optionIdx) => {
+                const isPicked = selectedOption === optionIdx;
+                const isCorrect = currentQ.answer === optionIdx;
+                const revealed = selectedOption !== null;
+
+                let buttonStyles = "border-ink/20 text-ink/85 hover:border-earth/60 hover:bg-paper";
                 if (revealed) {
-                  if (isCorrect) cls = "border-leaf bg-leaf/10 text-ink";
-                  else if (isPicked) cls = "border-earth bg-earth/10 text-ink";
-                  else cls = "border-ink/10 text-ink/60";
+                  if (isCorrect) {
+                    buttonStyles = "border-leaf bg-leaf/15 text-ink font-medium shadow-inner";
+                  } else if (isPicked) {
+                    buttonStyles = "border-earth bg-earth/15 text-ink font-medium shadow-inner";
+                  } else {
+                    buttonStyles = "border-ink/10 text-ink/40 opacity-60";
+                  }
                 }
+
                 return (
                   <button
-                    key={i}
-                    onClick={() => pick(i)}
+                    key={optionIdx}
+                    onClick={() => handlePick(optionIdx)}
                     disabled={revealed}
-                    className={`rounded-md border px-5 py-3 text-left text-sm transition-colors ${cls}`}
+                    className={`rounded-md border p-4 text-left text-sm transition-all ${buttonStyles}`}
                   >
-                    {o}
+                    <div className="flex items-center justify-between">
+                      <span>{optionText}</span>
+                      {revealed && isCorrect && <span className="text-leaf font-bold">✓ Đáp án đúng</span>}
+                      {revealed && isPicked && !isCorrect && <span className="text-earth font-bold">✕ Chưa đúng</span>}
+                    </div>
                   </button>
                 );
               })}
             </div>
 
-            {picked !== null && (
-              <div className="mt-5 rounded-md bg-paper px-4 py-3 text-sm text-ink/80 animate-fade-in">
-                <span className="keyword">
-                  {picked === q.answer ? "Chính xác." : "Chưa đúng."}
-                </span>{" "}
-                {q.explain}
+            {/* Detailed Explanation */}
+            {selectedOption !== null && (
+              <div className="mt-6 rounded-md border-l-4 border-earth bg-paper p-4 text-xs leading-relaxed text-ink/90 animate-fade-in">
+                <strong className="text-earth font-semibold block mb-1">Giải thích chi tiết:</strong>
+                {currentQ.explain}
               </div>
             )}
 
+            {/* Next button */}
             <div className="mt-8 flex justify-end">
               <button
-                onClick={next}
-                disabled={picked === null}
-                className="rounded-full bg-ink px-5 py-2 text-sm text-ivory transition-opacity disabled:opacity-40"
+                onClick={handleNext}
+                disabled={selectedOption === null}
+                className="rounded-full bg-earth px-7 py-3 text-sm font-medium text-ivory transition-all hover:bg-sun hover:text-ink disabled:opacity-30 shadow-md"
               >
-                {idx + 1 === QUIZ.length ? "Xem kết quả" : "Câu tiếp theo →"}
+                {idx + 1 === QUIZ.length ? "XEM KẾT QUẢ →" : "CÂU TIẾP THEO →"}
               </button>
             </div>
           </div>
         ) : (
-          <div className="mt-12 rounded-md border border-ink/10 bg-ivory p-8 text-center md:p-12 animate-fade-in">
-            <p className="eyebrow">Kết quả</p>
-            <p className="mt-3 font-display text-6xl text-ink">
-              {correctCount}<span className="text-ink/40">/{QUIZ.length}</span>
+          /* Results Screen */
+          <div className="mt-12 rounded-lg border border-ink/15 bg-ivory p-8 text-center md:p-12 shadow-xl animate-fade-in">
+            <p className="eyebrow text-roast tracking-[0.25em]">HÀNH TRÌNH HOÀN THÀNH</p>
+            <h3 className="mt-3 font-display text-3xl font-bold text-ink md:text-4xl">
+              BẠN ĐÃ HOÀN THÀNH HÀNH TRÌNH
+            </h3>
+
+            <div className="mt-6 inline-block rounded-full bg-paper px-8 py-4 border border-ink/10">
+              <p className="font-display text-5xl font-bold text-earth">
+                {score} / {QUIZ.length}
+              </p>
+              <p className="text-xs uppercase tracking-wider text-ink/60 mt-1 font-sans">
+                câu trả lời đúng
+              </p>
+            </div>
+
+            <p className="mt-6 max-w-md mx-auto text-base text-ink/85 font-display italic leading-relaxed">
+              {score === 5
+                ? "“Bạn đã nhìn thấy gần như toàn bộ câu chuyện phía sau vị đắng.”"
+                : score >= 3
+                ? "“Bạn đã nắm được những mối quan hệ quan trọng.”"
+                : "“Hành trình vẫn còn nhiều điều để khám phá. Hãy thử lại.”"}
             </p>
-            <p className="mt-4 text-base text-ink/75">
-              {correctCount === QUIZ.length
-                ? "Bạn đã nắm rất chắc những khái niệm nền tảng của hành trình này."
-                : correctCount >= 3
-                ? "Bạn đã đi được phần lớn hành trình. Hãy quay lại để soi kỹ những khái niệm còn mờ."
-                : "Hành trình còn nhiều điều để khám phá. Hãy đi lại từ đầu — vị đắng sẽ dần rõ ràng hơn."}
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <button onClick={restart} className="rounded-full border border-ink/20 px-5 py-2 text-sm text-ink hover:border-ink/50">
-                Làm lại
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <button
+                onClick={handleScrollTop}
+                className="rounded-full bg-earth px-6 py-3 text-sm font-medium text-ivory hover:bg-sun hover:text-ink shadow-md transition-all"
+              >
+                XEM LẠI HÀNH TRÌNH
               </button>
-              <button onClick={scrollTop} className="rounded-full bg-earth px-5 py-2 text-sm text-ivory hover:bg-sun hover:text-ink">
-                Xem lại hành trình
+              <button
+                onClick={handleRestart}
+                className="rounded-full border border-ink/20 bg-paper px-6 py-3 text-sm font-medium text-ink hover:border-ink/50 transition-all"
+              >
+                LÀM LẠI TRẮC NGHIỆM
               </button>
             </div>
           </div>

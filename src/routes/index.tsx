@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="grain-bg text-ink">
+    <main className="grain-bg text-ink min-h-screen selection:bg-earth selection:text-ivory">
       <Header />
       <Hero />
       <SectionCommodity />
